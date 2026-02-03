@@ -58,7 +58,7 @@ with col1:
         # st.image("us.jpg", caption="Forever with you", use_column_width=True)
         
         # Or use a URL for now to test:
-        st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueXpueXpueXpueXpueXpueXpueXpueXpueXpueXpueXpueCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/lNy70qJtN6D2uXqV8C/giphy.gif", caption="Our Love Story", use_column_width=True)
+        st.image("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS88YPA-8Eu6Gl09N4HfCTL5GKKSGgIifNhUg&s", caption="Our Love Story", use_column_width=True)
 
 with col2:
     # JavaScript updated for Mobile (touchstart)
@@ -98,4 +98,5 @@ with col2:
 
 st.write("---")
 st.caption("Made with ❤️ and a little bit of Python code, just for you.")
+
 

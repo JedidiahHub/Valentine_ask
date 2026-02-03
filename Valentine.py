@@ -42,7 +42,7 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 # --- Main App Content ---
-st.title("Hey you... I have a very important question. 🌹")
+st.title("Ayanfe mi... I have a very important question. 🌹")
 st.write("") # Add a little spacing
 st.header("Will you be my Valentine?")
 
@@ -89,4 +89,5 @@ with col2:
     components.html(no_button_html, height=250)
 
 st.write("---")
+
 st.caption("Made with ❤️ and a little bit of Python code, just for you.")

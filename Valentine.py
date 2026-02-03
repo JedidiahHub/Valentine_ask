@@ -7,16 +7,15 @@ st.set_page_config(page_title="A Special Question", page_icon="❤️")
 # --- Custom CSS for Styling ---
 st.markdown("""
     <style>
-    /* This sets the background for the entire app */
     .stApp {
         background-image: linear-gradient(to bottom right, #ffdde1, #ee9ca7);
         background-attachment: fixed;
     }
     
-    /* Style for the main title */
     h1 {
         color: #d63384;
         text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        text-align: center;
     }
 
     /* Style for the 'Yes' button */
@@ -30,20 +29,19 @@ st.markdown("""
         padding: 15px 30px;
         transition: all 0.3s ease-in-out;
         box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        width: 100%;
     }
 
-    /* Makes the 'Yes' button grow on hover */
     div.stButton > button:first-child:hover {
-        transform: scale(1.15);
+        transform: scale(1.1);
         background-color: #ff3333;
-        box-shadow: 0 6px 8px rgba(0,0,0,0.15);
     }
     </style>
     """, unsafe_allow_html=True)
 
 # --- Main App Content ---
 st.title("Ayanfe mi... I have a very important question. 🌹")
-st.write("") # Add a little spacing
+st.write("") 
 st.header("Will you be my Valentine?")
 
 # Create two columns for layout
@@ -53,15 +51,20 @@ with col1:
     # The "Yes" button logic
     if st.button("YES! ❤️", key="yes_button"):
         st.balloons()
-        st.success("Yay! You just made me the happiest person! Best. Day. Ever. 😍")
-        # Display a celebratory GIF
-        st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueXpueXpueXpueXpueXpueXpueXpueXpueXpueXpueXpueCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/lNy70qJtN6D2uXqV8C/giphy.gif", use_column_width=True)
+        st.success("Yay! You just made me the happiest person! 😍")
+        
+        # --- YOUR PICTURE GOES HERE ---
+        # If you have a local file named 'us.jpg' in the same folder, use:
+        # st.image("us.jpg", caption="Forever with you", use_column_width=True)
+        
+        # Or use a URL for now to test:
+        st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueXpueXpueXpueXpueXpueXpueXpueXpueXpueXpueXpueCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/lNy70qJtN6D2uXqV8C/giphy.gif", caption="Our Love Story", use_column_width=True)
 
 with col2:
-    # This is the "Moving No Button" logic using HTML & JavaScript
+    # JavaScript updated for Mobile (touchstart)
     no_button_html = """
     <div id="no-container" style="height: 150px; width: 100%; position: relative; display: flex; justify-content: center; align-items: center;">
-        <button id="no-btn" style="position: absolute; background-color: #6c757d; color: white; border: none; padding: 10px 20px; font-size: 16px; border-radius: 5px; cursor: pointer; transition: 0.1s;">
+        <button id="no-btn" style="position: absolute; background-color: #6c757d; color: white; border: none; padding: 10px 20px; font-size: 16px; border-radius: 5px; cursor: pointer; transition: 0.1s; touch-action: none;">
             No
         </button>
     </div>
@@ -69,18 +72,23 @@ with col2:
     <script>
         const btn = document.getElementById('no-btn');
 
-        btn.addEventListener('mouseover', function() {
-            // Calculate random positions for the button to jump to
-            // We use 'fixed' position so it can jump anywhere on the screen
+        function moveButton() {
             const x = Math.random() * (window.innerWidth - btn.offsetWidth);
             const y = Math.random() * (window.innerHeight - btn.offsetHeight);
-            
             btn.style.position = 'fixed';
             btn.style.left = x + 'px';
             btn.style.top = y + 'px';
-        });
+        }
+
+        // Desktop move
+        btn.addEventListener('mouseover', moveButton);
         
-        // Just in case they are super fast and manage to click it
+        // Mobile move
+        btn.addEventListener('touchstart', function(e) {
+            e.preventDefault(); // Prevents the actual click
+            moveButton();
+        });
+
         btn.onclick = function() {
             alert("Nice try, but you can't escape love! 😉");
         }
@@ -89,5 +97,5 @@ with col2:
     components.html(no_button_html, height=250)
 
 st.write("---")
-
 st.caption("Made with ❤️ and a little bit of Python code, just for you.")
+
